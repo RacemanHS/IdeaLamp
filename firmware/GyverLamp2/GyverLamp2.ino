@@ -43,6 +43,10 @@
 #define MIC_VCC 12          // питание микрофона GPIO12 (D6 на wemos/node)
 #define PHOT_VCC 14         // питание фоторезистора GPIO14 (D5 на wemos/node)
 
+// ------------ Индикаторы и подсветка -------------
+#define BACKLIGHT_PIN 14         // пин ленты GPIO0 (D3 на wemos/node)
+#define MAX_BACKLIGHT_LEDS 6        // макс. светодиодов
+
 // ------------ Лента -------------
 #define STRIP_PIN 2         // пин ленты GPIO2 (D4 на wemos/node), GPIO5 (D1) для module
 #define MAX_LEDS 300        // макс. светодиодов
@@ -123,7 +127,10 @@ WiFiUDP Udp;
 WiFiUDP ntpUDP;
 IPAddress broadIP;
 NTPClient ntp(ntpUDP);
+CRGB backlight_leds[MAX_BACKLIGHT_LEDS];
 CRGB leds[MAX_LEDS];
+CLEDController &backlihgtController;// = FastLED.addLeds<STRIP_CHIP, BACKLIGHT_PIN, STRIP_COLOR>(backlight_leds, MAX_BACKLIGHT_LEDS); // clean memory if necessary (delete the controllers)!!!
+CLEDController &ledController;// = FastLED.addLeds<STRIP_CHIP, STRIP_PIN, STRIP_COLOR>(leds, MAX_LEDS);
 Time now;
 Button btn(BTN_PIN);
 Button brt_btn(BRT_BTN_PIN);
@@ -152,6 +159,7 @@ void setup() {
   Serial.begin(115200);
   DEBUGLN();
 #endif
+  startBacklight();
   startStrip();         // старт ленты
   btn.setLevel(digitalRead(BTN_PIN));   // смотрим что за кнопка
   EE_startup();         // читаем епром
