@@ -129,8 +129,8 @@ IPAddress broadIP;
 NTPClient ntp(ntpUDP);
 CRGB backlight_leds[MAX_BACKLIGHT_LEDS];
 CRGB leds[MAX_LEDS];
-CLEDController &backlihgtController;// = FastLED.addLeds<STRIP_CHIP, BACKLIGHT_PIN, STRIP_COLOR>(backlight_leds, MAX_BACKLIGHT_LEDS); // clean memory if necessary (delete the controllers)!!!
-CLEDController &ledController;// = FastLED.addLeds<STRIP_CHIP, STRIP_PIN, STRIP_COLOR>(leds, MAX_LEDS);
+CLEDController &backlihgtController = FastLED.addLeds<STRIP_CHIP, BACKLIGHT_PIN, STRIP_COLOR>(backlight_leds, MAX_BACKLIGHT_LEDS); // clean memory if necessary (delete the controllers)!!!
+CLEDController &ledController = FastLED.addLeds<STRIP_CHIP, STRIP_PIN, STRIP_COLOR>(leds, MAX_LEDS);
 Time now;
 Button btn(BTN_PIN);
 Button brt_btn(BRT_BTN_PIN);

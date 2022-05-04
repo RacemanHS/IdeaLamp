@@ -77,7 +77,7 @@ void parsing() {
           case 12: if (gotNTP) {                          // OTA обновление, если есть интернет
               cfg.update = 1;
               EE_updCfg();
-              FastLED.clear();
+              ledController.clearLedData();
               FastLED.show();
               char OTA[60];
               mString ota(OTA);
@@ -179,7 +179,7 @@ void parsing() {
         }
         break;
     }
-    FastLED.clear();    // на всякий случай
+    ledController.clearLedData();    // на всякий случай
   }
 }
 

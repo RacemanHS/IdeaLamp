@@ -34,7 +34,7 @@ void blink16(CRGB color) {
     fill_solid(leds, 16, color);
     FastLED.show();
     delay(300);
-    FastLED.clear();
+    ledController.clearLedData();
     FastLED.show();
     delay(300);
   }

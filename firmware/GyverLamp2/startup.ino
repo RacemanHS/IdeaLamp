@@ -2,7 +2,7 @@ void checkButton() {
 #if (USE_BTN == 1)
   DEBUGLN(cfg.WiFimode ? "local mode" : "AP mode");
   if (btn.isHold()) {          // кнопка зажата
-    FastLED.clear();
+    ledController.clearLedData();
     byte count = 0;
     bool state = 0;
 
@@ -29,7 +29,7 @@ void checkButton() {
     }
   }
   FastLED.setBrightness(50);
-  FastLED.clear();
+  ledController.clearLedData();
   FastLED.show();
 #endif
 }
@@ -44,7 +44,7 @@ void checkGroup() {
     btn.tick();
     if (btn.isClick()) {
       if (++cfg.group > 10) cfg.group = 1;
-      FastLED.clear();
+      ledController.clearLedData();
       fill_solid(leds, cfg.group, (cfg.WiFimode) ? (CRGB::Blue) : (CRGB::Green));
       FastLED.show();
       flag = 1;
@@ -65,7 +65,7 @@ void checkGroup() {
   DEBUG("role: ");
   DEBUGLN(cfg.role);
 }
-
+//ToDo
 void startBacklight() {
 
   backlihgtController = FastLED.addLeds<STRIP_CHIP, BACKLIGHT_PIN, STRIP_COLOR>(backlight_leds, MAX_BACKLIGHT_LEDS); // clean memory if necessary (delete the controllers)!!!
@@ -76,33 +76,28 @@ void startBacklight() {
   backlight_leds[3] = CRGB::DarkViolet;
   backlight_leds[4] = CRGB::DarkViolet;
   backlight_leds[5] = CRGB::DarkViolet;
+  //???What is that???
   //FastLED.addLeds<STRIP_CHIP, BACKLIGHT_PIN, STRIP_COLOR>(backlight_leds, MAX_BACKLIGHT_LEDS).setCorrection(TypicalLEDStrip);
-  FastLED.setMaxPowerInVoltsAndMilliamps(STRIP_VOLT, 240);//How to set voltage for LedController&
+  //???Is it correct???
+  FastLED.setMaxPowerInVoltsAndMilliamps(STRIP_VOLT, 240);//How to set voltage for LedController&   
   backlihgtController.showLeds(50);
 }
 
-void startStrip(CLEDController lController) {
+void startStrip() {
 	
   ledController = FastLED.addLeds<STRIP_CHIP, STRIP_PIN, STRIP_COLOR>(leds, MAX_LEDS);
-  //FastLED.addLeds<STRIP_CHIP, STRIP_PIN, STRIP_COLOR>(leds, MAX_LEDS).setCorrection(TypicalLEDStrip);
+  //FastLED.addLeds<STRIP_CHIP, STRIP_PIN, STRIP_COLOR>(leds, MAX_LEDS).setCorrection(TypicalLEDStrip);  
   FastLED.setMaxPowerInVoltsAndMilliamps(STRIP_VOLT, 60*40/*mA per led*/);
   FastLED.setBrightness(50);
   ledController.showLeds();
 }
-
-/*void startStrip() {
-  FastLED.addLeds<STRIP_CHIP, STRIP_PIN, STRIP_COLOR>(leds, MAX_LEDS).setCorrection(TypicalLEDStrip);
-  FastLED.setMaxPowerInVoltsAndMilliamps(STRIP_VOLT, 500);
-  FastLED.setBrightness(50);
-  FastLED.show();
-}*/
 
 void showRGB() {
   leds[0] = CRGB::Red;
   leds[1] = CRGB::Green;
   leds[2] = CRGB::Blue;
   FastLED.show();
-  FastLED.clear();
+  ledController.clearLedData();
   delay(1500);
 }
 
@@ -111,7 +106,7 @@ void startWiFi() {
   else setupLocal();              // подключаемся к точке
 
   restartUDP();
-  FastLED.clear();
+  ledController.clearLedData();
   FastLED.show();
 }
 
@@ -149,7 +144,7 @@ void setupLocal() {
           connect = true;
           break;
         }
-        FastLED.clear();
+        ledController.clearLedData();
         leds[count] = CRGB::Yellow;
         FastLED.show();
         count += dir;

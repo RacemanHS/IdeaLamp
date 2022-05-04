@@ -16,7 +16,7 @@ void effectsRoutine() {
     }
     if (postDawn.isReady()) {
       postDawn.stop();
-      FastLED.clear();
+      ledController.clearLedData();
       FastLED.show();
     }
     return;
@@ -53,7 +53,7 @@ void effectsRoutine() {
   FastLED.setBrightness(thisBright);
 
   if (prevEff != CUR_PRES.effect) {   // смена эффекта
-    FastLED.clear();
+    ledController.clearLedData();
     prevEff = CUR_PRES.effect;
     loading = true;
   }
@@ -177,7 +177,7 @@ void effectsRoutine() {
       if (cfg.deviceType > 1) {         // 2D огонь
         fireRoutine(CUR_PRES.speed / 2);
       } else {                          // 1D огонь
-        FastLED.clear();
+        ledController.clearLedData();
         static byte heat[MAX_LEDS];
         CRGBPalette16 gPal;
         if (CUR_PRES.color < 5) gPal = HeatColors_p;
@@ -200,7 +200,7 @@ void effectsRoutine() {
       break;
 
     case 7: // ==================================== ОГОНЬ 2020 ====================================
-      FastLED.clear();
+      ledController.clearLedData();
       if (cfg.deviceType > 1) {         // 2D огонь
         fire2020(CUR_PRES.scale, thisLength);
       } else {                          // 1D огонь
@@ -238,7 +238,7 @@ void effectsRoutine() {
       }
       break;
     case 9: // =================================== СМЕРЧ ===================================
-      FastLED.clear();
+      ledController.clearLedData();
       FOR_k(0, (thisScale >> 5) + 1) {
         FOR_i(0, cfg.length) {
           //byte thisPos = inoise8(i * 10 - (now.weekMs >> 1) * CUR_PRES.speed / 255, k * 10000);
@@ -259,7 +259,7 @@ void effectsRoutine() {
       break;
 
     case 10: // =================================== ЧАСЫ ===================================
-      FastLED.clear();
+      ledController.clearLedData();
       drawClock(mapFF(CUR_PRES.scale, 0, cfg.length - 7), (CUR_PRES.speed < 10) ? 0 : (255 - CUR_PRES.speed), CHSV(CUR_PRES.color, 255, 255));
       break;
 
