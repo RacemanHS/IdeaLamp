@@ -174,7 +174,7 @@ void set_max_power_in_milliwatts( uint32_t powerInmW)
 void show_at_max_brightness_for_power()
 {
     // power management usage is now in FastLED.show, no need for this function
-    FastLED.show();
+    ledController.ShowLeds();
 }
 
 void delay_at_max_brightness_for_power( uint16_t ms)

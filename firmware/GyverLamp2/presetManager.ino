@@ -38,7 +38,7 @@ void controlHandler(bool state) {
     turnoffTmr.stop();
     delay(50);
     ledController.clearLedData();
-    FastLED.show();
+    ledController.ShowLeds();
     DEBUGLN("stop off timer");
     return;
   }
@@ -47,7 +47,7 @@ void controlHandler(bool state) {
     postDawn.stop();
     delay(50);
     ledController.clearLedData();
-    FastLED.show();
+    ledController.ShowLeds();
     DEBUGLN("stop dawn timer");
     return;
   }
@@ -67,7 +67,7 @@ void setPower(bool state) {
   if (!state) {
     delay(100);     // чтобы пролететь мин. частоту обновления
     ledController.clearLedData();
-    FastLED.show();
+    ledController.ShowLeds();
   }
   if (millis() - udpTmr >= 1000) sendToSlaves(0, cfg.state); // пиздец костыль (не отправлять слейвам если команда получена по воздуху)
   DEBUGLN(state ? "Power on" : "Power off");

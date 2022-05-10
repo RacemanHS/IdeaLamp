@@ -27,7 +27,7 @@ void loop() {
   for(int i = 0; i < NUM_LEDS_PER_STRIP; i++) {
     // set our current dot to red
     leds[i] = CRGB::Red;
-    FastLED.show();
+    ledController.ShowLeds();
     // clear our current dot before we move on
     leds[i] = CRGB::Black;
     delay(100);
@@ -36,7 +36,7 @@ void loop() {
   for(int i = NUM_LEDS_PER_STRIP-1; i >= 0; i--) {
     // set our current dot to red
     leds[i] = CRGB::Red;
-    FastLED.show();
+    ledController.ShowLeds();
     // clear our current dot before we move on
     leds[i] = CRGB::Black;
     delay(100);

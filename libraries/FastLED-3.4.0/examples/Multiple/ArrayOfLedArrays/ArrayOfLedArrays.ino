@@ -29,7 +29,7 @@ void loop() {
     // This inner loop will go over each led in the current strip, one at a time
     for(int i = 0; i < NUM_LEDS_PER_STRIP; i++) {
       leds[x][i] = CRGB::Red;
-      FastLED.show();
+      ledController.ShowLeds();
       leds[x][i] = CRGB::Black;
       delay(100);
     }

@@ -60,10 +60,10 @@ void setup() {
 void loop() { 
   // Turn the LED on, then pause
   leds[0] = CRGB::Red;
-  FastLED.show();
+  ledController.ShowLeds();
   delay(500);
   // Now turn the LED off, then pause
   leds[0] = CRGB::Black;
-  FastLED.show();
+  ledController.ShowLeds();
   delay(500);
 }

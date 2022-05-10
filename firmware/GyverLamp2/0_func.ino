@@ -32,10 +32,10 @@ void restartUDP() {
 void blink16(CRGB color) {
   FOR_i(0, 3) {
     fill_solid(leds, 16, color);
-    FastLED.show();
+    ledController.ShowLeds();
     delay(300);
     ledController.clearLedData();
-    FastLED.show();
+    ledController.ShowLeds();
     delay(300);
   }
 }

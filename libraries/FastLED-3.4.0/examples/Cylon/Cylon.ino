@@ -29,7 +29,7 @@ void loop() {
 		// Set the i'th led to red 
 		leds[i] = CHSV(hue++, 255, 255);
 		// Show the leds
-		FastLED.show(); 
+    	ledController.ShowLeds(); 
 		// now that we've shown the leds, reset the i'th led to black
 		// leds[i] = CRGB::Black;
 		fadeall();
@@ -43,7 +43,7 @@ void loop() {
 		// Set the i'th led to red 
 		leds[i] = CHSV(hue++, 255, 255);
 		// Show the leds
-		FastLED.show();
+    	ledController.ShowLeds();
 		// now that we've shown the leds, reset the i'th led to black
 		// leds[i] = CRGB::Black;
 		fadeall();

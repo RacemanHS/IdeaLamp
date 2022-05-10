@@ -81,7 +81,7 @@ void loop()
 
   Fire2012WithPalette(); // run simulation frame, using palette colors
   
-  FastLED.show(); // display this frame
+  ledController.ShowLeds(); // display this frame
   FastLED.delay(1000 / FRAMES_PER_SECOND);
 }
 

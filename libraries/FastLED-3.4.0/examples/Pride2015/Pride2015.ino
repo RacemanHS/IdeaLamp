@@ -34,7 +34,7 @@ void setup() {
 void loop()
 {
   pride();
-  FastLED.show();  
+  ledController.ShowLeds();  
 }
 
 

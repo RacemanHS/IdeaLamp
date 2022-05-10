@@ -24,8 +24,8 @@ void loop()
   // random16_add_entropy( random());
 
   Fire2012(); // run simulation frame
-  
-  FastLED.show(); // display this frame
+   
+  ledController.ShowLeds(); // display this frame
   FastLED.delay(1000 / FRAMES_PER_SECOND);
 }
 

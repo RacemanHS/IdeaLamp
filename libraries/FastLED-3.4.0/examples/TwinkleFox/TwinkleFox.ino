@@ -135,7 +135,7 @@ void loop()
 
   drawTwinkles( leds);
   
-  FastLED.show();
+  ledController.ShowLeds();
 }
 
 

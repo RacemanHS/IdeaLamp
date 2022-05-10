@@ -54,7 +54,7 @@ void loop()
     
     FillLEDsFromPaletteColors( startIndex);
     
-    FastLED.show();
+    ledController.ShowLeds();
     FastLED.delay(1000 / UPDATES_PER_SECOND);
 }
 
