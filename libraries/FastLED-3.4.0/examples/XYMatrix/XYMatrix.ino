@@ -186,7 +186,7 @@ void loop()
     } else {
       FastLED.setBrightness(BRIGHTNESS);
     }
-    ledController.ShowLeds();
+    ledController.showLeds();
 }
 
 void DrawOneFrame( byte startHue8, int8_t yHueDelta8, int8_t xHueDelta8)

@@ -25,7 +25,7 @@ void loop()
 
   Fire2012(); // run simulation frame
    
-  ledController.ShowLeds(); // display this frame
+  ledController.showLeds(); // display this frame
   FastLED.delay(1000 / FRAMES_PER_SECOND);
 }
 

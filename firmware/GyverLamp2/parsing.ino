@@ -78,7 +78,7 @@ void parsing() {
               cfg.update = 1;
               EE_updCfg();
               ledController.clearLedData();
-              ledController.ShowLeds();
+              ledController.showLeds();
               char OTA[60];
               mString ota(OTA);
               ota.clear();

@@ -50,7 +50,7 @@ void loop()
   gPatterns[gCurrentPatternNumber]();
 
   // send the 'leds' array out to the actual LED strip
-  ledController.ShowLeds(); 
+  ledController.showLeds(); 
   // insert a delay to keep the framerate modest
   FastLED.delay(1000/FRAMES_PER_SECOND); 
 

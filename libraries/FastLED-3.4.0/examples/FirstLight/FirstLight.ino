@@ -81,7 +81,7 @@ void loop() {
       leds[whiteLed] = CRGB::White;
 
       // Show the leds (only one of which is set to white, from above)
-      ledController.ShowLeds();
+      ledController.showLeds();
 
       // Wait a little bit
       delay(100);

@@ -34,7 +34,7 @@ void setup() {
 void loop()
 {
   pride();
-  ledController.ShowLeds();  
+  ledController.showLeds();  
 }
 
 

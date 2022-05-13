@@ -16,7 +16,7 @@ void checkButton() {
         state = 0;
         break;
       }
-      ledController.ShowLeds();
+      ledController.showLeds();
       delay(300);
     }
     if (state) {
@@ -30,13 +30,13 @@ void checkButton() {
   }
   FastLED.setBrightness(50);
   ledController.clearLedData();
-  ledController.ShowLeds();
+  ledController.showLeds();
 #endif
 }
 
 void checkGroup() {
   fill_solid(leds, cfg.group, (cfg.WiFimode) ? (CRGB::Blue) : (CRGB::Green));
-  ledController.ShowLeds();
+  ledController.showLeds();
   uint32_t tmr = millis();
   bool flag = 0;
   while (millis() - tmr < 3000) {
@@ -46,7 +46,7 @@ void checkGroup() {
       if (++cfg.group > 10) cfg.group = 1;
       ledController.clearLedData();
       fill_solid(leds, cfg.group, (cfg.WiFimode) ? (CRGB::Blue) : (CRGB::Green));
-      ledController.ShowLeds();
+      ledController.showLeds();
       flag = 1;
       tmr = millis();
     }
@@ -96,7 +96,7 @@ void showRGB() {
   leds[0] = CRGB::Red;
   leds[1] = CRGB::Green;
   leds[2] = CRGB::Blue;
-  ledController.ShowLeds();
+  ledController.showLeds();
   ledController.clearLedData();
   delay(1500);
 }
@@ -107,7 +107,7 @@ void startWiFi() {
 
   restartUDP();
   ledController.clearLedData();
-  ledController.ShowLeds();
+  ledController.showLeds();
 }
 
 void setupAP() {
@@ -146,7 +146,7 @@ void setupLocal() {
         }
         ledController.clearLedData();
         leds[count] = CRGB::Yellow;
-        ledController.ShowLeds();
+        ledController.showLeds();
         count += dir;
         if (count >= 15 || count <= 0) dir *= -1;
         delay(50);

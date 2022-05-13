@@ -27,7 +27,7 @@ void setup() {
 void loop() {
   for(int i = 0; i < NUM_LEDS; i++) {
     leds[i] = CRGB::Red;
-    ledController.ShowLeds();
+    ledController.showLeds();
     leds[i] = CRGB::Black;
     delay(100);
   }

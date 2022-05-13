@@ -7,7 +7,7 @@ void effectsRoutine() {
     if (postDawn.running()) thisColor = 255;
     fill_solid(leds, MAX_LEDS, ColorFromPalette(HeatColors_p, thisColor, scaleFF(thisColor, dawn.bright), LINEARBLEND));
     drawClock(cfg.length / 2 - 4, 100, 0);
-    ledController.ShowLeds(255);
+    ledController.showLeds(255);
     if (dawnTmr.isReady()) {
       dawnTmr.stop();
       postDawn.setInterval(dawn.post * 60000ul);
@@ -16,7 +16,7 @@ void effectsRoutine() {
     if (postDawn.isReady()) {
       postDawn.stop();
       ledController.clearLedData();
-      ledController.ShowLeds();
+      ledController.showLeds();
     }
     return;
   }
@@ -272,7 +272,7 @@ void effectsRoutine() {
   if (btnClicks > 0) fill_solid(leds, btnClicks, CRGB::White);
   if (brTicks > 0) fill_solid(leds, brTicks, CRGB::Cyan);
   yield();
-  ledController.ShowLeds(thisBright);
+  ledController.showLeds(thisBright);
 }
 
 // ====================================================================================================================
