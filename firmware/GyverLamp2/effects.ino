@@ -3,11 +3,12 @@ void effectsRoutine() {
   if (!effTmr.isReady()) return;
 
   if (dawnTmr.running() || postDawn.running()) {
+    FastLED.setBrightness(255);
     byte thisColor = dawnTmr.getLength8();
     if (postDawn.running()) thisColor = 255;
     fill_solid(leds, MAX_LEDS, ColorFromPalette(HeatColors_p, thisColor, scaleFF(thisColor, dawn.bright), LINEARBLEND));
-    drawClock(cfg.length / 2 - 4, 100, 0);
-    ledController.showLeds(255);
+    drawClock(cfg.length / 2 - 4, 100, 0);    
+    FastLED.show();
     if (dawnTmr.isReady()) {
       dawnTmr.stop();
       postDawn.setInterval(dawn.post * 60000ul);
@@ -16,7 +17,7 @@ void effectsRoutine() {
     if (postDawn.isReady()) {
       postDawn.stop();
       ledController.clearLedData();
-      ledController.showLeds();
+      FastLED.show();
     }
     return;
   }
@@ -272,7 +273,7 @@ void effectsRoutine() {
   if (btnClicks > 0) fill_solid(leds, btnClicks, CRGB::White);
   if (brTicks > 0) fill_solid(leds, brTicks, CRGB::Cyan);
   yield();
-  ledController.showLeds(thisBright);
+  FastLED.show();
 }
 
 // ====================================================================================================================
