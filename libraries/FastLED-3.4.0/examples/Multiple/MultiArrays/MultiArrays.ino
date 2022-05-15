@@ -29,7 +29,7 @@ void loop() {
     redLeds[i] = CRGB::Red;
     greenLeds[i] = CRGB::Green;
     blueLeds[i] = CRGB::Blue;
-    ledController.showLeds();
+    FastLED.show();
     // clear our current dot before we move on
     redLeds[i] = CRGB::Black;
     greenLeds[i] = CRGB::Black;
@@ -42,7 +42,7 @@ void loop() {
     redLeds[i] = CRGB::Red;
     greenLeds[i] = CRGB::Green;
     blueLeds[i] = CRGB::Blue;
-    ledController.showLeds();
+    FastLED.show();
     // clear our current dot before we move on
     redLeds[i] = CRGB::Black;
     greenLeds[i] = CRGB::Black;

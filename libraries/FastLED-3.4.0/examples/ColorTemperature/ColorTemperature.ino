@@ -71,7 +71,7 @@ void loop()
     memset8( leds, 0, NUM_LEDS * sizeof(CRGB));
   }
   
-  ledController.showLeds();
+  FastLED.show();
   FastLED.delay(8);
 }
 

@@ -114,7 +114,7 @@ void loop() {
       freqBin = freqBin + frequencyBinsHorizontal[x];
     }
     // after all pixels set, show them all at the same instant
-    ledController.showLeds();
+    FastLED.show();
     // Serial.println();
   }
 }

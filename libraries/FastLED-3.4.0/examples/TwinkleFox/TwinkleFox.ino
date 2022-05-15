@@ -135,7 +135,7 @@ void loop()
 
   drawTwinkles( leds);
   
-  ledController.showLeds();
+  FastLED.show();
 }
 
 

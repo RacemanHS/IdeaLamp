@@ -23,9 +23,8 @@ void loop()
   // Add entropy to random number generator; we use a lot of it.
   // random16_add_entropy( random());
 
-  Fire2012(); // run simulation frame
-   
-  ledController.showLeds(); // display this frame
+  Fire2012(); // run simulation frame  
+  FastLED.show(); // display this frame
   FastLED.delay(1000 / FRAMES_PER_SECOND);
 }
 

@@ -30,7 +30,7 @@ void loop()
 {
   EVERY_N_MILLISECONDS( 20) {
     pacifica_loop();
-    ledController.showLeds();
+    FastLED.show();
   }
 }
 
