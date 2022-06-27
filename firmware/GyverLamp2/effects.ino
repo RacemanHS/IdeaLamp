@@ -1,3 +1,49 @@
+void backlightRoutine() {
+  if (!backlightTmr.isReady()) return; 
+  int setLightness = 0;
+  int dif = 0;
+  lightness = analogRead(PHOTOCELL_PIN);
+  setLightness = constrain(analogRead(PHOTOCELL_PIN)/4,100,255);
+  dif = abs(setLightness - oldLightness);
+
+  if(dif <= 5) return;
+  if(oldLightness > setLightness) {setLightness = oldLightness - 5;}
+    else {setLightness = oldLightness + 5;}
+  oldLightness = setLightness;
+  
+  Serial.print(lightness);  
+  Serial.print("  Brightness  -  ");
+  Serial.println(setLightness);
+
+  if(setLightness >= 245)
+  {
+    backlight_leds[0] = CRGB::Aqua;
+    backlight_leds[1] = CRGB::Aqua;
+    backlight_leds[2] = CRGB::Aqua;
+    backlight_leds[3] = CRGB::DarkViolet;
+    backlight_leds[4] = CRGB::DarkViolet;
+    backlight_leds[5] = CRGB::DarkViolet;
+    if(!cfg.state) FastLED.show();
+    return;
+  }
+   
+  double hue, saturation, value;//оттенок/насыщенность/яркость
+
+  ColorConverter::RgbToHsv(0, 200, 255, hue, saturation, value);
+  backlight_leds[0].setHSV(int(hue*255), int(saturation*255), setLightness);
+  backlight_leds[1].setHSV(int(hue*255), int(saturation*255), setLightness);
+  backlight_leds[2].setHSV(int(hue*255), int(saturation*255), setLightness);
+
+  ColorConverter::RgbToHsv(148, 0, 211, hue, saturation, value);
+  backlight_leds[3].setHSV(int(hue*255), int(saturation*255), setLightness);
+  backlight_leds[4].setHSV(int(hue*255), int(saturation*255), setLightness);
+  backlight_leds[5].setHSV(int(hue*255), int(saturation*255), setLightness);
+  Serial.print(int(hue*255));Serial.print("  -  ");Serial.print(int(saturation*255));Serial.print("  -  ");Serial.println(int(value*255));
+  
+  if(!cfg.state) FastLED.show();
+  //ToDo  //add feature to switch the color of backlight
+}
+
 void effectsRoutine() {
   static byte prevEff = 255;
   if (!effTmr.isReady()) return;
@@ -7,7 +53,7 @@ void effectsRoutine() {
     byte thisColor = dawnTmr.getLength8();
     if (postDawn.running()) thisColor = 255;
     fill_solid(leds, MAX_LEDS, ColorFromPalette(HeatColors_p, thisColor, scaleFF(thisColor, dawn.bright), LINEARBLEND));
-    drawClock(cfg.length / 2 - 4, 100, 0);    
+    drawClock(cfg.length / 2 - 4, 100, 0);
     FastLED.show();
     if (dawnTmr.isReady()) {
       dawnTmr.stop();

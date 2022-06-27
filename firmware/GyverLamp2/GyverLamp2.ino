@@ -44,6 +44,7 @@
 #define PHOT_VCC 14         // питание фоторезистора GPIO14 (D5 на wemos/node)
 
 // ------------ Индикаторы и подсветка -------------
+#define PHOTOCELL_PIN 0 // пин фоторезистора и
 #define BACKLIGHT_PIN 14         // пин ленты GPIO0 (D3 на wemos/node)
 #define MAX_BACKLIGHT_LEDS 6        // макс. светодиодов
 
@@ -116,6 +117,7 @@ const char WiFiPassword[] = "12345678";
 #include "ESP8266httpUpdate.h"  // OTA
 #include "mString.h"      // стринг билдер
 #include "Clap.h"         // обработка хлопков
+#include "ColorConverterLib.h"
 
 // ------------------- ДАТА --------------------
 Config cfg;
@@ -136,12 +138,14 @@ Button btn(BTN_PIN);
 Button brt_btn(BRT_BTN_PIN);
 Button wrm_btn(WRM_BTN_PIN);
 timerMillis EEtmr(EE_TOUT), turnoffTmr, connTmr(120000ul), dawnTmr, holdPresTmr(30000ul), blinkTmr(300);
-timerMillis effTmr(30, true), onlineTmr(500, true), postDawn(10 * 60000ul);
+timerMillis effTmr(30, true), onlineTmr(500, true), postDawn(10 * 60000ul), backlightTmr(400, true);
 TimeRandom trnd;
 VolAnalyzer vol(A0), low, high;
 FastFilter phot;
 Clap clap;
 
+int lightness = 0;
+int oldLightness = 0;
 uint16_t portNum;
 uint32_t udpTmr = 0, gotADCtmr = 0;
 byte btnClicks = 0, brTicks = 0;
@@ -185,6 +189,7 @@ void loop() {
   yield();
 #endif
   checkEEupdate();    // сохраняем епром
+  backlightRoutine(); //проверка освещенности
   presetRotation(0);  // смена режимов по расписанию
   effectsRoutine();   // мигаем
   yield();
