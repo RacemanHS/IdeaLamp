@@ -151,7 +151,7 @@ uint32_t udpTmr = 0, gotADCtmr = 0;
 byte btnClicks = 0, brTicks = 0;
 unsigned char matrixValue[11][16];
 bool gotNTP = false, gotTime = false;
-bool loading = true;
+bool loading = true, nightmode = true;
 int udpLength = 0;
 byte udpScale = 0, udpBright = 0;
 

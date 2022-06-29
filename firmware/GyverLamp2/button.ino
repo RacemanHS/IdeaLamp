@@ -28,8 +28,9 @@ void button() {
         sendToSlaves(1, cfg.curPreset);
         break;
       case 4:
-        setPreset(0);
-        sendToSlaves(1, cfg.curPreset);
+        nightmode = !nightmode;
+        //setPreset(0);
+        //sendToSlaves(1, cfg.curPreset);
         break;
       case 5:
         cfg.role = 0;

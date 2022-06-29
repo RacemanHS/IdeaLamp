@@ -3,7 +3,8 @@ void backlightRoutine() {
   int setLightness = 0;
   int dif = 0;
   lightness = analogRead(PHOTOCELL_PIN);
-  setLightness = constrain(analogRead(PHOTOCELL_PIN)/4,100,255);
+  if(nightmode) {setLightness = constrain(75000/lightness,100,255);} 
+    else {setLightness = constrain(lightness/4,100,255);}
   dif = abs(setLightness - oldLightness);
 
   if(dif <= 5) return;
@@ -38,7 +39,7 @@ void backlightRoutine() {
   backlight_leds[3].setHSV(int(hue*255), int(saturation*255), setLightness);
   backlight_leds[4].setHSV(int(hue*255), int(saturation*255), setLightness);
   backlight_leds[5].setHSV(int(hue*255), int(saturation*255), setLightness);
-  Serial.print(int(hue*255));Serial.print("  -  ");Serial.print(int(saturation*255));Serial.print("  -  ");Serial.println(int(value*255));
+  //Serial.print(int(hue*255));Serial.print("  -  ");Serial.print(int(saturation*255));Serial.print("  -  ");Serial.println(int(value*255));
   
   if(!cfg.state) FastLED.show();
   //ToDo  //add feature to switch the color of backlight
