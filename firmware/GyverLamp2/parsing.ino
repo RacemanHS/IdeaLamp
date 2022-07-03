@@ -74,7 +74,7 @@ void parsing() {
             strcpy(cfg.pass, pass);
             break;
           case 11: EE_updCfgRst(); break;                 // рестарт
-          case 12: if (gotNTP) {                          // OTA обновление, если есть интернет
+          /*case 12: if (gotNTP) {                          // OTA обновление, если есть интернет
               cfg.update = 1;
               EE_updCfg();
               ledController.clearLedData();
@@ -89,7 +89,7 @@ void parsing() {
               delay(100);
               WiFiClient client;
               ESPhttpUpdate.update(client, OTA);
-            } break;
+            } break;*/
           case 13:                                        // выключить через
             if (data[3] == 0) turnoffTmr.stop();
             else {

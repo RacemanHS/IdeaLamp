@@ -1,26 +1,26 @@
 void backlightRoutine() {
   if (!backlightTmr.isReady()) return; 
-  int setLightness = 0;
+  int setBrightness = 0;
   int dif = 0;
-  lightness = analogRead(PHOTOCELL_PIN);
-  if(nightmode) {setLightness = constrain(75000/lightness,100,255);} 
-    else {setLightness = constrain(lightness/4,100,255);}
-  dif = abs(setLightness - oldLightness);
+  brightness = analogRead(PHOTOCELL_PIN);
+  if(nightmode) {setBrightness = constrain(75000/brightness,100,255);} 
+    else {setBrightness = constrain(brightness/4,100,255);}
+  dif = abs(setBrightness - oldBrightness);
 
   if(dif <= 5) return;
-  if(oldLightness > setLightness) {setLightness = oldLightness - 5;}
-    else {setLightness = oldLightness + 5;}
-  oldLightness = setLightness;
+  if(oldBrightness > setBrightness) {setBrightness = oldBrightness - 5;}
+    else {setBrightness = oldBrightness + 5;}
+  oldBrightness = setBrightness;
   
-  Serial.print(lightness);  
+  /*Serial.print(brightness);  //for debug - check the brightness
   Serial.print("  Brightness  -  ");
-  Serial.println(setLightness);
+  Serial.println(setBrightness);*/
 
-  if(setLightness >= 245)
+  if(setBrightness >= 245)
   {
     backlight_leds[0] = CRGB::Aqua;
-    backlight_leds[1] = CRGB::Aqua;
-    backlight_leds[2] = CRGB::Aqua;
+    backlight_leds[1] = CRGB::DarkViolet;
+    backlight_leds[2] = CRGB::DarkViolet;
     backlight_leds[3] = CRGB::DarkViolet;
     backlight_leds[4] = CRGB::DarkViolet;
     backlight_leds[5] = CRGB::DarkViolet;
@@ -31,14 +31,14 @@ void backlightRoutine() {
   double hue, saturation, value;//оттенок/насыщенность/яркость
 
   ColorConverter::RgbToHsv(0, 200, 255, hue, saturation, value);
-  backlight_leds[0].setHSV(int(hue*255), int(saturation*255), setLightness);
-  backlight_leds[1].setHSV(int(hue*255), int(saturation*255), setLightness);
-  backlight_leds[2].setHSV(int(hue*255), int(saturation*255), setLightness);
+  backlight_leds[0].setHSV(int(hue*255), int(saturation*255), setBrightness);
 
   ColorConverter::RgbToHsv(148, 0, 211, hue, saturation, value);
-  backlight_leds[3].setHSV(int(hue*255), int(saturation*255), setLightness);
-  backlight_leds[4].setHSV(int(hue*255), int(saturation*255), setLightness);
-  backlight_leds[5].setHSV(int(hue*255), int(saturation*255), setLightness);
+  backlight_leds[1].setHSV(int(hue*255), int(saturation*255), setBrightness);
+  backlight_leds[2].setHSV(int(hue*255), int(saturation*255), setBrightness);
+  backlight_leds[3].setHSV(int(hue*255), int(saturation*255), setBrightness);
+  backlight_leds[4].setHSV(int(hue*255), int(saturation*255), setBrightness);
+  backlight_leds[5].setHSV(int(hue*255), int(saturation*255), setBrightness);
   //Serial.print(int(hue*255));Serial.print("  -  ");Serial.print(int(saturation*255));Serial.print("  -  ");Serial.println(int(value*255));
   
   if(!cfg.state) FastLED.show();

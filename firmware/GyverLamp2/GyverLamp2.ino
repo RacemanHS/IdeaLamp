@@ -144,8 +144,8 @@ VolAnalyzer vol(A0), low, high;
 FastFilter phot;
 Clap clap;
 
-int lightness = 0;
-int oldLightness = 0;
+int brightness = 0;
+int oldBrightness = 0;
 uint16_t portNum;
 uint32_t udpTmr = 0, gotADCtmr = 0;
 byte btnClicks = 0, brTicks = 0;

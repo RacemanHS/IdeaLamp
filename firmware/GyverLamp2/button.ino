@@ -30,7 +30,7 @@ void button() {
       case 4:
         nightmode = !nightmode;
         //setPreset(0);
-        //sendToSlaves(1, cfg.curPreset);
+        //1sendToSlaves(1, cfg.curPreset);
         break;
       case 5:
         cfg.role = 0;
