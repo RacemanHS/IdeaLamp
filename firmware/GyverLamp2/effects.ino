@@ -3,11 +3,11 @@ void backlightRoutine() {
   int setBrightness = 0;
   int dif = 0;
   brightness = analogRead(PHOTOCELL_PIN);
-  if(nightmode) {setBrightness = constrain(75000/brightness,100,255);} 
-    else {setBrightness = constrain(brightness/4,100,255);}
+  if(nightmode) {setBrightness = constrain(75000/brightness,0,255);} 
+    else {setBrightness = constrain(brightness/4,25,255);}
   dif = abs(setBrightness - oldBrightness);
 
-  if(dif <= 5) return;
+  if(dif <= 5 || (oldBrightness == 255 && dif <= 10)) return;
   if(oldBrightness > setBrightness) {setBrightness = oldBrightness - 5;}
     else {setBrightness = oldBrightness + 5;}
   oldBrightness = setBrightness;
@@ -16,7 +16,7 @@ void backlightRoutine() {
   Serial.print("  Brightness  -  ");
   Serial.println(setBrightness);*/
 
-  if(setBrightness >= 245)
+  if(setBrightness >= 255)
   {
     backlight_leds[0] = CRGB::Aqua;
     backlight_leds[1] = CRGB::DarkViolet;
@@ -24,6 +24,10 @@ void backlightRoutine() {
     backlight_leds[3] = CRGB::DarkViolet;
     backlight_leds[4] = CRGB::DarkViolet;
     backlight_leds[5] = CRGB::DarkViolet;
+    backlight_leds[6] = CRGB::DarkViolet;
+    backlight_leds[7] = CRGB::DarkViolet;
+    backlight_leds[8] = CRGB::DarkViolet;
+    backlight_leds[9] = CRGB::DarkViolet;
     if(!cfg.state) FastLED.show();
     return;
   }
@@ -39,6 +43,10 @@ void backlightRoutine() {
   backlight_leds[3].setHSV(int(hue*255), int(saturation*255), setBrightness);
   backlight_leds[4].setHSV(int(hue*255), int(saturation*255), setBrightness);
   backlight_leds[5].setHSV(int(hue*255), int(saturation*255), setBrightness);
+  backlight_leds[6].setHSV(int(hue*255), int(saturation*255), setBrightness);
+  backlight_leds[7].setHSV(int(hue*255), int(saturation*255), setBrightness);
+  backlight_leds[8].setHSV(int(hue*255), int(saturation*255), setBrightness);
+  backlight_leds[9].setHSV(int(hue*255), int(saturation*255), setBrightness);
   //Serial.print(int(hue*255));Serial.print("  -  ");Serial.print(int(saturation*255));Serial.print("  -  ");Serial.println(int(value*255));
   
   if(!cfg.state) FastLED.show();

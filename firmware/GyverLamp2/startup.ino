@@ -76,18 +76,22 @@ void startBacklight() {
   backlight_leds[3] = CRGB::DarkViolet;
   backlight_leds[4] = CRGB::DarkViolet;
   backlight_leds[5] = CRGB::DarkViolet;
+  backlight_leds[6] = CRGB::DarkViolet;
+  backlight_leds[7] = CRGB::DarkViolet;
+  backlight_leds[8] = CRGB::DarkViolet;
+  backlight_leds[9] = CRGB::DarkViolet;
   //???What is that???
-  //FastLED.addLeds<STRIP_CHIP, BACKLIGHT_PIN, STRIP_COLOR>(backlight_leds, MAX_BACKLIGHT_LEDS).setCorrection(TypicalLEDStrip);
+  FastLED.addLeds<STRIP_CHIP, BACKLIGHT_PIN, STRIP_COLOR>(backlight_leds, MAX_BACKLIGHT_LEDS).setCorrection(TypicalLEDStrip);
   //???Is it correct???
-  FastLED.setMaxPowerInVoltsAndMilliamps(STRIP_VOLT, 240);//How to set voltage for LedController&   
+  FastLED.setMaxPowerInVoltsAndMilliamps(STRIP_VOLT, 400);//How to set voltage for LedController&   
   backlihgtController.showLeds(50);
 }
 
 void startStrip() {
 	
   ledController = FastLED.addLeds<STRIP_CHIP, STRIP_PIN, STRIP_COLOR>(leds, MAX_LEDS);
-  //FastLED.addLeds<STRIP_CHIP, STRIP_PIN, STRIP_COLOR>(leds, MAX_LEDS).setCorrection(TypicalLEDStrip);  
-  FastLED.setMaxPowerInVoltsAndMilliamps(STRIP_VOLT, 60*40/*mA per led*/);
+  FastLED.addLeds<STRIP_CHIP, STRIP_PIN, STRIP_COLOR>(leds, MAX_LEDS).setCorrection(TypicalLEDStrip);  
+  FastLED.setMaxPowerInVoltsAndMilliamps(STRIP_VOLT, 100*40/*mA per led*/);
   FastLED.setBrightness(50);
   ledController.showLeds();
 }

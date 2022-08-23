@@ -27,15 +27,9 @@
 // ---------- Настройки -----------
 #define GL_KEY "GL"         // ключ сети
 
-// ------------ Кнопки -------------
-#define BRT_BTN_PIN 5           // пин кнопки GPIO5 (D1 на wemos/node)   -----Кнопка регулировки яркости света
-#define USE_BRT_BTN 1           // 1 использовать кнопку, 0 нет
-
+// ------------ Кнопка -------------
 #define BTN_PIN 4           // пин кнопки GPIO4 (D2 на wemos/node)		-----Кнопка включения/выключения
 #define USE_BTN 1           // 1 использовать кнопку, 0 нет
-
-#define WRM_BTN_PIN 3           // пин кнопки GPIO0 (D3 на wemos/node)   -----Кнопка регулировки теплоты света
-#define USE_WRM_BTN 1           // 1 использовать кнопку, 0 нет
 
 // ------------- АЦП --------------
 #define USE_ADC 1           // можно выпилить АЦП
@@ -46,7 +40,7 @@
 // ------------ Индикаторы и подсветка -------------
 #define PHOTOCELL_PIN 0 // пин фоторезистора и
 #define BACKLIGHT_PIN 14         // пин ленты GPIO0 (D3 на wemos/node)
-#define MAX_BACKLIGHT_LEDS 6        // макс. светодиодов
+#define MAX_BACKLIGHT_LEDS 10        // макс. светодиодов
 
 // ------------ Лента -------------
 #define STRIP_PIN 2         // пин ленты GPIO2 (D4 на wemos/node), GPIO5 (D1) для module
@@ -64,7 +58,7 @@
 
 // ------------ WiFi AP ------------
 const char AP_NameChar[] = "IdeaLamp";
-const char WiFiPassword[] = "12345678";
+const char WiFiPassword[] = "32568421";
 
 // ------------ Прочее -------------
 #define GL_VERSION 23       // код версии прошивки
@@ -135,8 +129,6 @@ CLEDController &backlihgtController = FastLED.addLeds<STRIP_CHIP, BACKLIGHT_PIN,
 CLEDController &ledController = FastLED.addLeds<STRIP_CHIP, STRIP_PIN, STRIP_COLOR>(leds, MAX_LEDS);
 Time now;
 Button btn(BTN_PIN);
-Button brt_btn(BRT_BTN_PIN);
-Button wrm_btn(WRM_BTN_PIN);
 timerMillis EEtmr(EE_TOUT), turnoffTmr, connTmr(120000ul), dawnTmr, holdPresTmr(30000ul), blinkTmr(300);
 timerMillis effTmr(30, true), onlineTmr(500, true), postDawn(10 * 60000ul), backlightTmr(400, true);
 TimeRandom trnd;
